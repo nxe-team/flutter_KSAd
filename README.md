@@ -1,15 +1,32 @@
-# flutter_ksad
+# Flutter KSAd
 
-A new flutter plugin project.
+Flutter 集成快手广告。
 
-## Getting Started
+## 支持平台
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+- iOS
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 接入文档
+
+### 引入 SDK
+
+#### Android
+
+暂未接入。
+
+#### iOS
+
+1. 允许 HTTP 访问，`ios/info.plist` 文件中添加
+
+   ```
+   <key>NSAppTransportSecurity</key>
+   <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+   </dict>
+   ```
+
+   或者使用 `XCode` 编辑该文件添加 `App Transport Security Settings` -> `Allow Arbitrary Loads` 为 `YES` 。
+
+2. 请求ATT
 
