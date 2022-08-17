@@ -3,10 +3,14 @@ import UIKit
 import KSAdSDK
 
 public class SwiftFlutterKsadPlugin: NSObject, FlutterPlugin {
+    private static var binaryMessenger: FlutterBinaryMessenger?
     private var interstitialAd: FlutterKSAdInterstitialAd?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "flutter_ksad", binaryMessenger: registrar.messenger())
+        binaryMessenger = registrar.messenger()
+        let channel = FlutterMethodChannel(
+            name: FlutterKSAdChannel.pluginChannelName,
+            binaryMessenger: binaryMessenger!)
         let instance = SwiftFlutterKsadPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
@@ -19,7 +23,9 @@ public class SwiftFlutterKsadPlugin: NSObject, FlutterPlugin {
             KSAdSDKManager.setAppId(args["appId"] as! String)
             result(true)
         case "showInterstitialAd":
-            interstitialAd = FlutterKSAdInterstitialAd(args)
+            interstitialAd = FlutterKSAdInterstitialAd(
+                messenger: SwiftFlutterKsadPlugin.binaryMessenger!,
+                args: args)
             result(true)
         default:
             result(FlutterMethodNotImplemented)
