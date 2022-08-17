@@ -12,6 +12,13 @@ class FlutterKsad {
     });
   }
 
+  /// 显示开屏广告
+  static Future<void> showSplashAd({required String posId}) async {
+    await _channel.invokeMethod('showSplashAd', {
+      'posId': posId,
+    });
+  }
+
   /// 显示插屏广告
   static Future<void> showInterstitialAd({required String posId}) async {
     await _channel.invokeMethod('showInterstitialAd', {

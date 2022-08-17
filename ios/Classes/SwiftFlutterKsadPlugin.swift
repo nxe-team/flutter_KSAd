@@ -4,6 +4,7 @@ import KSAdSDK
 
 public class SwiftFlutterKsadPlugin: NSObject, FlutterPlugin {
     private static var binaryMessenger: FlutterBinaryMessenger?
+    private var splashAd: FlutterKSAdSplashAd?
     private var interstitialAd: FlutterKSAdInterstitialAd?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
@@ -21,6 +22,11 @@ public class SwiftFlutterKsadPlugin: NSObject, FlutterPlugin {
         case "initSDK":
             KSAdSDKManager.setLoglevel(KSAdSDKLogLevel.all)
             KSAdSDKManager.setAppId(args["appId"] as! String)
+            result(true)
+        case "showSplashAd":
+            splashAd = FlutterKSAdSplashAd(
+                messenger: SwiftFlutterKsadPlugin.binaryMessenger!,
+                args: args)
             result(true)
         case "showInterstitialAd":
             interstitialAd = FlutterKSAdInterstitialAd(

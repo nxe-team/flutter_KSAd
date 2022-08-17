@@ -32,7 +32,9 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  FlutterKsad.showSplashAd(posId: AdConfig.splashId);
+                },
                 child: const Text('开屏广告'),
               ),
               ElevatedButton(
