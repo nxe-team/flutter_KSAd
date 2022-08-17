@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -6,8 +5,18 @@ import 'package:flutter/services.dart';
 class FlutterKsad {
   static const MethodChannel _channel = MethodChannel('flutter_ksad');
 
-  static Future<String?> get platformVersion async {
-    final String? version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  /// 初始化 SDK
+  static Future<void> initSDK({required String appId}) async {
+    await _channel.invokeMethod('initSDK', {
+      'appId': appId,
+    });
+  }
+
+  /// 显示插屏广告
+  static Future<void> showInterstitialAd({required String posId}) async {
+    await _channel.invokeMethod('showInterstitialAd', {
+      /// 广告位 ID
+      'posId': posId,
+    });
   }
 }
