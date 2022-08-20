@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_ksad/flutter_ksad.dart';
 import 'package:flutter_ksad_example/config/ad_config.dart';
+import 'package:flutter_ksad_example/page/feed_ad_page.dart';
+import 'package:flutter_ksad_example/page/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,34 +26,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter KSAd Example'),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  FlutterKsad.showSplashAd(posId: AdConfig.splashId);
-                },
-                child: const Text('开屏广告'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  FlutterKsad.showInterstitialAd(
-                      posId: AdConfig.interstitialId);
-                },
-                child: const Text('插屏广告'),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('信息流广告'),
-              ),
-            ],
-          ),
-        ),
-      ),
+      routes: {
+        '/HomePage': (context) => const HomePage(),
+        '/FeedAdPage': (context) => const FeedAdPage(),
+      },
+      initialRoute: '/HomePage',
     );
   }
 }
