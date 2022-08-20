@@ -25,7 +25,40 @@ class FlutterKSAdSplashAd: NSObject, KSSplashAdViewDelegate {
     private func postMessage(_ method: String, arguments: [String: Any]? = nil) {        methodChannel.invokeMethod(method, arguments: arguments)
     }
     
+    /// 开屏广告请求加载完成
+    func ksad_splashAdDidLoad(_ splashAdView: KSSplashAdView) {
+        postMessage("onSplashAdLoadSuccess")
+    }
+    
+    /// 开屏广告加载失败
+    func ksad_splashAd(_ splashAdView: KSSplashAdView, didFailWithError error: Error) {
+        postMessage("onSplashAdLoadFail")
+        postMessage("onAdEnd")
+        print("onSplashAdLoadFail \(error)")
+    }
+    
+    /// 开屏广告内容准备完成，可以进行显示
     func ksad_splashAdContentDidLoad(_ splashAdView: KSSplashAdView) {
         splashAdView.show(in: UIApplication.shared.keyWindow!)
+    }
+    
+    /// 开屏广告已显示
+    func ksad_splashAdDidVisible(_ splashAdView: KSSplashAdView) {
+        postMessage("onAdShow")
+    }
+    
+    /// 开屏广告已关闭
+    func ksad_splashAdDidClose(_ splashAdView: KSSplashAdView) {
+        postMessage("onAdEnd")
+    }
+    
+    /// 开屏广告被点击
+    func ksad_splashAd(_ splashAdView: KSSplashAdView, didClick inMiniWindow: Bool) {
+        postMessage("onAdClicked")
+    }
+    
+    /// 开屏广告倒计时结束
+    func ksad_splashAdDidAutoDismiss(_ splashAdView: KSSplashAdView) {
+        postMessage("onAdDismiss")
     }
 }
