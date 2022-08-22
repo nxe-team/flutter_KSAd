@@ -1,17 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_ksad/view/ksad_feed_ad.dart';
+import 'package:flutter_ksad_example/config/ad_config.dart';
 
-class FeedAd extends StatefulWidget {
-  const FeedAd({Key? key}) : super(key: key);
+class FeedAd extends StatelessWidget {
+  final Map<String, dynamic> creationParams;
 
-  @override
-  _FeedAdState createState() => _FeedAdState();
-}
+  const FeedAd({Key? key, required this.creationParams}) : super(key: key);
 
-class _FeedAdState extends State<FeedAd> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('feed'),
+    return KSAdFeedAd(
+      creationParams: creationParams,
     );
   }
 }

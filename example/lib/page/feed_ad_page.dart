@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ksad_example/config/ad_config.dart';
 import 'package:flutter_ksad_example/widget/feed_ad.dart';
 
 class FeedAdPage extends StatefulWidget {
@@ -18,7 +19,11 @@ class _FeedAdPageState extends State<FeedAdPage> {
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
           if (index % 5 == 0) {
-            return const FeedAd();
+            return FeedAd(
+              creationParams: {
+                'posId': AdConfig.feedId,
+              },
+            );
           }
 
           return Container(

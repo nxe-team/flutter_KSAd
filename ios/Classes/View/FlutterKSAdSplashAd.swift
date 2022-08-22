@@ -5,6 +5,7 @@
 //  Created by Anand on 2022/8/17.
 //
 
+import Flutter
 import KSAdSDK
 
 /// 开屏广告
